@@ -6,6 +6,10 @@
 VMNAME=$(cat salida)
 ./ncore.sh 
 NUMCORES=$(cat salida)
+./ostype.sh
+OSTYPE=$(cat salida)
+./hd.sh
+HDSIZE=$(cat salida)
 # Lineas que ejecutaran los comandos de VBoxManage para crear la maquina virtual
 
 echo "Nombre de maquina ${VMNAME} y num cores ${NUMCORES}"
