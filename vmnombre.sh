@@ -6,6 +6,9 @@
 while [ 1 ]; do
   dialog --inputbox "Digite nombre de la maquina:" 8 40 2> salida
   VMNAME=$(cat salida)
+  if [ "${VMNAME}" == "" ]; then
+    break
+  fi
   VBoxManage list vms | grep ${VMNAME} 
   if [ $? -eq 1 ]; then
     break
