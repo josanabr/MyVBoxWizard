@@ -13,5 +13,9 @@ HDSIZE=$(cat salida)
 ./mem.sh
 MEMSIZE=$(cat salida)
 # Lineas que ejecutaran los comandos de VBoxManage para crear la maquina virtual
-
-echo "Nombre de maquina ${VMNAME} y num cores ${NUMCORES}"
+VBoxManage createvm --name ${VMNAME} --ostype ${OSTYPE} --register
+VBoxManage modifyvm ${VMNAME} --memory ${MEMSIZE}
+VBoxManage modifyvm ${VMNAME} --cpus ${NUMCORES}
+VBoxManage createhd --filename VirtualBox\ VMs/${VMNAME}/${VMNAME}.vdi --size ${HDSIZE} --format VDI
+VBoxManage storagectl ${VMNAME} --name "SATA Controller" --add sata --controller IntelAhci
+VBoxManage storageattach ${VMNAME} --storagectl "SATA Controller" --port 0 --device 0 --type hdd --medium VirtualBox\ VMs/${VMNAME}/${VMNAME}.vdi
