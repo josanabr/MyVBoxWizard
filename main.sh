@@ -12,6 +12,7 @@ OSTYPE=$(cat salida)
 HDSIZE=$(cat salida)
 ./mem.sh
 MEMSIZE=$(cat salida)
+rm salida
 # Lineas que ejecutaran los comandos de VBoxManage para crear la maquina virtual
 VBoxManage createvm --name ${VMNAME} --ostype ${OSTYPE} --register
 VBoxManage modifyvm ${VMNAME} --memory ${MEMSIZE}
